@@ -69,6 +69,12 @@ Still short:
 Also fixed this round: tablet "Order" band clipped its sentence under the scooped corner; tablet copyright line wrapped word by word.
 ```
 
+## Ordering on WhatsApp (added after the first build)
+Every pair on the price list is a link that puts it on the size slip; the slip gained Pair, Colour (Minggu only)
+and Price rows and its total line now sends the order on WhatsApp, with email as the fallback. A pair not made in
+the measured size says which sizes it comes in instead of offering an order. The shop's number is the placeholder
+62XXXXXXXXXX in index.html and js/main.js.
+
 ## Deviations
 - Hero field is the ink colour, not a soft colour: the palette flips whole sections to near-black, and the paper tag
   needs a contrasting ground. The action button is brass (accent on the action).

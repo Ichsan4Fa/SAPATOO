@@ -44,7 +44,8 @@ h1, h2, h3, p, figure, ul { margin: 0; }
 ul { padding: 0; list-style: none; }
 img, video, svg { display: block; max-width: 100%; }
 img, video { height: auto; }
-button, input { font: inherit; color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
 button { background: none; border: 0; padding: 0; cursor: pointer; }
 a { color: inherit; }
 b { font-weight: 500; }
@@ -159,8 +160,10 @@ main { background: var(--bg); }
 .sheet__note { margin-top: 12px; color: var(--muted); }
 .sheet__group { margin-top: 56px; }
 .items { width: 100%; margin: 20px auto 0; text-align: left; display: flex; flex-direction: column; gap: 16px; }
-.items li { display: grid; grid-template-columns: 1fr auto; column-gap: 16px; }
-.item__name { font-weight: 500; }
+.item { display: grid; grid-template-columns: 1fr auto; column-gap: 16px; text-decoration: none; }
+.item__name { font-weight: 500; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 3px; text-underline-offset: 6px; transition: text-decoration-color var(--t-hover) ease; }
+.item[aria-current="true"] .item__name { text-decoration-color: var(--accent); }
+@media (hover: hover) and (pointer: fine) { .item:hover .item__name { text-decoration-color: var(--ink); } }
 .item__desc { grid-column: 1 / -1; font-size: var(--step-small); color: var(--muted); }
 .sheet__hours { margin-top: 56px; }
 
@@ -187,9 +190,13 @@ main { background: var(--bg); }
 #foot::-webkit-outer-spin-button, #foot::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 #foot-unit { margin-right: 4px; }
 output { font-weight: 700; }
-.slip__total { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; margin: 32px -32px 0; padding: 0 32px; background: var(--ink); color: var(--paper); text-decoration: none; transition: background-color var(--t-hover) ease, color var(--t-hover) ease; }
-.slip__total b { font-weight: 700; }
-@media (hover: hover) and (pointer: fine) { .slip__total:hover { background: var(--accent); color: var(--ink); } }
+.slip select { height: 44px; max-width: 100%; padding: 0 40px 0 14px; border: 0; border-radius: 0; appearance: none; cursor: pointer; font-weight: 700; background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23181715' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center / 12px 8px; transition: background-color var(--t-hover) ease; }
+@media (hover: hover) and (pointer: fine) { .slip select:hover { background-color: var(--accent); } }
+.slip__total { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; margin: 32px -32px 0; padding: 0 32px; background: var(--ink); color: var(--paper); font-weight: 500; text-decoration: none; transition: background-color var(--t-hover) ease, color var(--t-hover) ease; }
+.slip__total:not([href]) { background: var(--surface); color: var(--ink); }
+@media (hover: hover) and (pointer: fine) { .slip__total[href]:hover { background: var(--accent); color: var(--ink); } }
+.slip__alt { margin-top: 16px; text-align: center; color: var(--muted); }
+.slip__alt a { color: var(--ink); }
 .chart { margin: 0 32px 32px; border-collapse: collapse; width: calc(100% - 64px); text-align: left; }
 .chart th, .chart td { padding: 4px 0; }
 

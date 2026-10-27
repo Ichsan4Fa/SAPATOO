@@ -1,7 +1,19 @@
-// SAPATOO homepage: reveals, the colour tabs, the size slip, and the film.
+// SAPATOO homepage: reveals, one order shared by the colour tabs, the price list and the size slip, and the film.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const ORDER_TO = 'hello@sapatoo.example';
+// The shop's WhatsApp number, country code first and digits only (62 for Indonesia).
+// The same placeholder is written into the links in index.html: replace it everywhere.
+const WHATSAPP = '62XXXXXXXXXX';
+
+const whatsappLink = (text) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+const emailLink = (subject, body) => `mailto:${ORDER_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+const orderMessage = ({ pair, price, size, foot }) => [
+  'Hello SAPATOO, I would like to order:',
+  `Pair: ${pair}, ${price}`,
+  `Size: EU ${size || ''}${foot ? ` (my foot is ${foot} cm)` : ''}`,
+  'Deliver to: ',
+].join('\n');
 
 // Reveal once when an element enters the viewport. Content is never left hidden.
 (() => {
@@ -20,38 +32,70 @@ const ORDER_TO = 'hello@sapatoo.example';
   }, 2500));
 })();
 
+// The pairs, read from the price list so the list stays the one place they are written.
+const pairs = new Map();
+document.querySelectorAll('.item[data-pair]').forEach((link) => {
+  const [min, max] = link.dataset.sizes.split('-').map(Number);
+  pairs.set(link.dataset.pair, {
+    name: link.dataset.pair,
+    price: link.querySelector('.item__price').textContent,
+    group: link.closest('.sheet__group').querySelector('h3').textContent,
+    min, max, link,
+  });
+});
+
+// One order, shared by the colour tabs, the price list and the size slip.
+const order = { pair: 'Minggu', colour: 'black' };
+const watchers = [];
+const watchOrder = (fn) => { watchers.push(fn); fn(); };
+const changeOrder = (changes) => { Object.assign(order, changes); watchers.forEach((fn) => fn()); };
+const describePair = () => (order.pair === 'Minggu' ? `Minggu sneaker in ${order.colour}` : order.pair);
+
 // The Minggu sneaker in three colours. The order cell carries the chosen colour.
 (() => {
   const shoe = document.querySelector('.showcase__shoe');
   const tabs = document.querySelectorAll('.tab');
-  const order = document.getElementById('order-minggu');
-  const nameSlot = order && order.querySelector('[data-colour-name]');
-  if (!shoe || !tabs.length) return;
+  const cell = document.getElementById('order-minggu');
+  const nameSlot = cell && cell.querySelector('[data-colour-name]');
+  if (!shoe || !tabs.length || !pairs.has('Minggu')) return;
 
-  tabs.forEach((tab) => tab.addEventListener('click', () => {
-    const colour = tab.dataset.colour;
-    tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+  tabs.forEach((tab) => tab.addEventListener('click', () => changeOrder({ colour: tab.dataset.colour })));
+  watchOrder(() => {
+    const { colour } = order;
+    tabs.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.colour === colour)));
+    if (nameSlot) nameSlot.textContent = colour;
+    if (cell) cell.href = whatsappLink(orderMessage({ pair: `Minggu sneaker in ${colour}`, price: pairs.get('Minggu').price }));
+    if (shoe.dataset.colour === colour) return;
     shoe.dataset.colour = colour;
     shoe.setAttribute('aria-label', `Drawing of a pair of Minggu sneakers in ${colour}, side view`);
     if (!reduceMotion) { shoe.classList.remove('is-swapping'); void shoe.getBoundingClientRect(); shoe.classList.add('is-swapping'); }
-    if (nameSlot) nameSlot.textContent = colour;
-    if (order) {
-      const subject = `Order: Minggu sneaker, ${colour}`;
-      const body = `I would like to order the Minggu sneaker in ${colour}, size EU `;
-      order.href = `mailto:${ORDER_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
+  });
+})();
+
+// Picking a pair on the price list, or "Find your size" under the Minggu, puts it on the slip.
+(() => {
+  document.querySelectorAll('a[data-pair]').forEach((link) => link.addEventListener('click', () => changeOrder({ pair: link.dataset.pair })));
+  watchOrder(() => pairs.forEach((p) => {
+    if (p.name === order.pair) p.link.setAttribute('aria-current', 'true'); else p.link.removeAttribute('aria-current');
   }));
 })();
 
-// The size slip. A shoe's inside is about 1.5 cm longer than the foot; EU sizes are counted in
-// Paris points (2/3 cm), UK sizes in barleycorns (1/3 inch) from a fixed start.
+// The size slip, which is also the order form. A shoe's inside is about 1.5 cm longer than the foot;
+// EU sizes are counted in Paris points (2/3 cm), UK sizes in barleycorns (1/3 inch) from a fixed start.
 (() => {
   const input = document.getElementById('foot');
-  if (!input) return;
+  if (!input || !pairs.size) return;
   const eu = document.getElementById('size-eu');
   const other = document.getElementById('size-other');
   const total = document.getElementById('size-total');
-  const order = document.getElementById('order-size');
+  const via = document.getElementById('size-via');
+  const link = document.getElementById('order-size');
+  const emailLine = document.getElementById('order-email-line');
+  const emailOut = document.getElementById('order-email');
+  const pairMenu = document.getElementById('pair');
+  const colourMenu = document.getElementById('colour');
+  const colourRow = document.getElementById('colour-row');
+  const price = document.getElementById('pair-price');
 
   const half = (n) => Math.round(n * 2) / 2;
   const fmt = (n) => String(n).replace('.5', '½');
@@ -70,18 +114,40 @@ const ORDER_TO = 'hello@sapatoo.example';
     return { eu: euSize, other: `UK ${fmt(uk)} · US ${fmt(uk + 1)} men, ${fmt(uk + 2)} women` };
   }
 
+  // The pair menu lists the price list, in its groups.
+  let group = null;
+  pairs.forEach((p) => {
+    if (!group || group.label !== p.group) { group = document.createElement('optgroup'); group.label = p.group; pairMenu.append(group); }
+    group.append(new Option(p.name, p.name));
+  });
+  document.querySelectorAll('.slip [data-js-row]').forEach((row) => { row.hidden = false; });
+
   function update() {
     let cm = parse(input.value);
     if (!Number.isFinite(cm)) return;
     cm = Math.min(32, Math.max(10, cm));
     const s = sizesFor(cm);
-    const inRange = s.eu >= RANGE[0] && s.eu <= RANGE[1];
+    const p = pairs.get(order.pair);
+    pairMenu.value = p.name;
+    colourMenu.value = order.colour;
+    colourRow.hidden = p.name !== 'Minggu';
+    price.textContent = p.price;
     eu.textContent = `EU ${s.eu}`;
-    other.textContent = inRange ? s.other : `Outside our sizes, EU ${RANGE[0]} to ${RANGE[1]}`;
-    total.textContent = `EU ${s.eu}`;
-    const subject = `Order in size EU ${s.eu}`;
-    const body = `My foot is ${cm} cm. I would like to order these shoes in size EU ${s.eu}: `;
-    order.href = `mailto:${ORDER_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    other.textContent = s.eu >= RANGE[0] && s.eu <= RANGE[1] ? s.other : `Outside our sizes, EU ${RANGE[0]} to ${RANGE[1]}`;
+
+    // A pair that is not made in this size cannot be ordered in it: the line says which sizes it comes in.
+    const fits = s.eu >= p.min && s.eu <= p.max;
+    via.hidden = !fits;
+    emailLine.hidden = !fits;
+    if (!fits) {
+      total.textContent = `${p.name} comes in EU ${p.min} to ${p.max}`;
+      link.removeAttribute('href');
+      return;
+    }
+    const message = orderMessage({ pair: describePair(), price: p.price, size: s.eu, foot: cm });
+    total.textContent = `Order ${p.name} in EU ${s.eu}`;
+    link.href = whatsappLink(message);
+    emailOut.href = emailLink(`Order: ${describePair()}, EU ${s.eu}`, message);
   }
 
   input.addEventListener('input', update);
@@ -95,8 +161,10 @@ const ORDER_TO = 'hello@sapatoo.example';
     input.value = Math.min(32, Math.max(10, half(cm) + parseFloat(btn.dataset.step)));
     update();
   }));
+  pairMenu.addEventListener('change', () => changeOrder({ pair: pairMenu.value }));
+  colourMenu.addEventListener('change', () => changeOrder({ colour: colourMenu.value }));
   document.getElementById('size-form').addEventListener('submit', (e) => { e.preventDefault(); update(); });
-  update();
+  watchOrder(update);
 })();
 
 // The film plays only while it is on screen, and not at all for reduced motion.
