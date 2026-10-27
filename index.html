@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAPATOO shoe store</title>
+  <meta name="description" content="SAPATOO sells sneakers, running shoes, boots and dress shoes for men, women and kids, in sizes EU 24 to 47.">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- The shoe, drawn once and coloured per use through custom properties -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="minggu" viewBox="0 0 640 290">
+    <!-- outsole and tread -->
+    <path style="fill:var(--sole-dark)" d="M40 246Q40 236 50 236H598Q618 236 620 252Q620 270 600 270H56Q40 270 40 256Z"/>
+    <path style="fill:var(--sole-shade)" d="M70 262h14v8H70zM104 262h14v8h-14zM138 262h14v8h-14zM172 262h14v8h-14zM206 262h14v8h-14zM240 262h14v8h-14zM274 262h14v8h-14zM308 262h14v8h-14zM342 262h14v8h-14zM376 262h14v8h-14zM410 262h14v8h-14zM444 262h14v8h-14zM478 262h14v8h-14zM512 262h14v8h-14zM546 262h14v8h-14z"/>
+    <!-- midsole with its stripe -->
+    <path style="fill:var(--sole)" d="M44 240Q44 214 62 212H580Q612 214 616 240Z"/>
+    <rect style="fill:var(--stripe)" x="60" y="222" width="542" height="7" rx="3.5"/>
+    <!-- upper -->
+    <path style="fill:var(--upper)" d="M56 214L54 118Q54 94 78 90L150 86Q188 88 204 110Q216 126 238 116L262 72Q272 54 294 58L322 64Q340 70 348 90L396 150Q426 178 478 186L566 196Q606 202 610 214Z"/>
+    <path style="fill:var(--upper-shade)" d="M56 214L55 132Q62 112 94 112Q124 118 134 160L142 214Z"/>
+    <path style="fill:var(--upper-shade)" d="M78 90L150 86Q188 88 204 110L194 121Q178 101 150 101L84 104Q66 106 62 122L55 120Q55 94 78 90Z"/>
+    <path style="fill:var(--upper-light)" d="M262 72Q272 54 294 58L322 64Q340 70 348 90L334 99Q306 80 272 93Z"/>
+    <!-- toe cap -->
+    <path style="fill:var(--sole)" d="M508 214Q510 186 554 189Q604 196 610 214Z"/>
+    <path style="fill:var(--sole-shade)" d="M528 206h6v6h-6zM544 204h6v6h-6zM560 204h6v6h-6zM576 206h6v6h-6z"/>
+    <!-- stitching -->
+    <path style="fill:none;stroke:var(--stitch);stroke-width:3;stroke-linecap:round;stroke-dasharray:0.1 9" d="M150 210Q146 150 222 132M70 112Q120 116 132 160M470 200Q500 176 560 186"/>
+    <!-- eyelet stay, eyelets, laces -->
+    <path style="fill:var(--upper-shade)" d="M232 124L244 102L402 148L394 170Z"/>
+    <g style="fill:var(--eyelet)">
+      <circle cx="244" cy="113" r="5.5"/><circle cx="274" cy="122" r="5.5"/><circle cx="305" cy="131" r="5.5"/>
+      <circle cx="335" cy="140" r="5.5"/><circle cx="366" cy="149" r="5.5"/><circle cx="394" cy="158" r="5.5"/>
+    </g>
+    <path style="fill:none;stroke:var(--lace);stroke-width:7;stroke-linecap:round" d="M244 113l20 -26M274 122l22 -27M305 131l23 -26M335 140l22 -24M366 149l20 -21M394 158l14 -14"/>
+    <path style="fill:none;stroke:var(--lace);stroke-width:6;stroke-linecap:round" d="M246 104q-26 22 -14 58M250 100q8 30 -4 64"/>
+    <!-- heel tab and the pair mark: two O's -->
+    <path style="fill:var(--tab)" d="M44 122Q44 112 54 112H64V172H54Q44 172 44 162Z"/>
+    <g style="fill:none;stroke:var(--mark);stroke-width:5">
+      <circle cx="176" cy="172" r="13"/><circle cx="198" cy="172" r="13"/>
+    </g>
+  </symbol>
+</svg>
+
+<main id="top">
+
+  <!-- 1. Hero: the swing tag -->
+  <header class="hero" data-ink="#e8e8e3">
+    <div class="topbar wrap">
+      <a class="wordmark" href="#top" aria-label="SAPATOO, home">SAPATOO</a>
+      <nav class="topnav" aria-label="Sections">
+        <a class="link" href="#minggu-sneaker">New pair</a>
+        <a class="link" href="#prices">Price list</a>
+        <a class="link" href="#size">Find your size</a>
+      </nav>
+      <a class="button button--brass" href="#prices">Shop now</a>
+    </div>
+
+    <div class="tag" data-load style="--d:80ms">
+      <span class="tag__eyelet" aria-hidden="true"></span>
+      <h1 class="tag__title lines">
+        <span class="line"><span data-line style="--i:0">SAPATOO</span></span>
+        <span class="line"><span data-line style="--i:1">shoe store</span></span>
+      </h1>
+      <p class="tag__lead">Sneakers, running shoes, boots and dress shoes for men, women and kids.</p>
+      <p class="tag__details small">
+        <span>Sizes EU 24 to 47</span><span class="diamond" aria-hidden="true"></span>
+        <span>Pairs from Rp 299.000</span><span class="diamond" aria-hidden="true"></span>
+        <span>Free size exchange</span>
+      </p>
+
+      <svg class="tag__shoe" viewBox="0 0 640 290" role="img" aria-label="Drawing of the Minggu sneaker in black, side view"><use href="#minggu"/></svg>
+
+      <div class="tag__entry">
+        <p class="tag__word">sa·pa·to</p>
+        <p class="tag__def">Portuguese for shoe. Carried to the Malay world in the 1500s, it is still the Indonesian word: <b>sepatu</b>.</p>
+      </div>
+
+      <nav class="tag__links" aria-label="Sections on this page">
+        <a href="#minggu-sneaker">New pair</a>
+        <a href="#prices">Price list</a>
+        <a href="#size">Find your size</a>
+      </nav>
+
+      <div class="tag__stub">
+        <svg class="tag__barcode" viewBox="0 0 75 40" aria-hidden="true"><path d="M0 0h2v40h-2zM3 0h3v40h-3zM7 0h1v40h-1zM10 0h4v40h-4zM15 0h2v40h-2zM18 0h1v40h-1zM22 0h2v40h-2zM25 0h1v40h-1zM28 0h3v40h-3zM32 0h2v40h-2zM35 0h4v40h-4zM40 0h1v40h-1zM43 0h1v40h-1zM47 0h1v40h-1zM50 0h2v40h-2zM53 0h1v40h-1zM57 0h1v40h-1zM60 0h4v40h-4zM65 0h1v40h-1zM68 0h3v40h-3zM72 0h2v40h-2z"/></svg>
+        <p class="small">Keep this stub. The wrong size is changed free within 30 days.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Showcase: this season's pair -->
+  <section class="showcase section" id="minggu-sneaker" aria-labelledby="minggu-title">
+    <figure class="showcase__plate" data-reveal style="--i:0">
+      <svg class="showcase__shoe" data-colour="black" viewBox="0 0 700 420" role="img" aria-label="Drawing of a pair of Minggu sneakers in black, side view">
+        <use class="pair-back" href="#minggu" x="60" y="0" width="640" height="290"/>
+        <use href="#minggu" x="0" y="118" width="640" height="290"/>
+      </svg>
+    </figure>
+    <div class="showcase__text">
+      <div class="tabs" role="group" aria-label="Colour" data-reveal style="--i:1">
+        <button type="button" class="tab" aria-pressed="true" data-colour="black">Black</button>
+        <button type="button" class="tab" aria-pressed="false" data-colour="chalk">Chalk</button>
+        <button type="button" class="tab" aria-pressed="false" data-colour="brass">Brass</button>
+      </div>
+      <div class="showcase__copy">
+        <h2 class="head" id="minggu-title" data-reveal style="--i:2">The Minggu sneaker</h2>
+        <p class="lead" data-reveal style="--i:3">Canvas upper, gum rubber sole and cotton laces. Minggu is Sunday in Indonesian, from the Portuguese domingo.</p>
+        <p class="showcase__price nums" data-reveal style="--i:4">Rp 459.000 <span>EU 36 to 46</span></p>
+      </div>
+      <div class="cells" data-reveal style="--i:5">
+        <a class="cell cell--ink" id="order-minggu" href="mailto:hello@sapatoo.example?subject=Order%3A%20Minggu%20sneaker%2C%20black&amp;body=I%20would%20like%20to%20order%20the%20Minggu%20sneaker%20in%20black%2C%20size%20EU%20"><span>Order in <span data-colour-name>black</span></span></a>
+        <a class="cell cell--tone" href="#size">Find your size</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The price list on the wall of lasts -->
+  <section class="prices" id="prices" aria-labelledby="prices-title">
+    <img class="prices__wall" src="assets/shoe-trees.jpg" width="1920" height="1314" loading="lazy" decoding="async"
+         alt="Hundreds of wooden shoe lasts hung in rows on a white wall">
+    <div class="sheet" data-reveal style="--i:0">
+      <svg class="edge edge--top" aria-hidden="true"><rect width="100%" height="100%" fill="url(#scallops)"/></svg>
+      <h2 class="head" id="prices-title">The price list</h2>
+      <p class="sheet__note small">Every pair is named after a word Indonesian took from Portuguese.</p>
+
+      <div class="sheet__group">
+        <h3 class="lead">Sneakers</h3>
+        <ul class="items">
+          <li><span class="item__name">Minggu</span><span class="item__price nums">Rp 459.000</span><span class="item__desc">From domingo, Sunday. Canvas, gum sole, <span class="nowrap">EU 36–46</span></span></li>
+          <li><span class="item__name">Tinta</span><span class="item__price nums">Rp 649.000</span><span class="item__desc">From tinta, ink. Black leather court shoe, <span class="nowrap">EU 36–46</span></span></li>
+          <li><span class="item__name">Jendela</span><span class="item__price nums">Rp 529.000</span><span class="item__desc">From janela, window. Open-mesh low-top, <span class="nowrap">EU 36–46</span></span></li>
+          <li><span class="item__name">Bendera</span><span class="item__price nums">Rp 699.000</span><span class="item__desc">From bandeira, flag. High-top in three colours, <span class="nowrap">EU 36–46</span></span></li>
+        </ul>
+      </div>
+
+      <div class="sheet__group">
+        <h3 class="lead">Running and walking</h3>
+        <ul class="items">
+          <li><span class="item__name">Roda</span><span class="item__price nums">Rp 899.000</span><span class="item__desc">From roda, wheel. Road running shoe, <span class="nowrap">EU 36–47</span></span></li>
+          <li><span class="item__name">Pesiar</span><span class="item__price nums">Rp 749.000</span><span class="item__desc">From passear, to stroll. Cushioned walking shoe, <span class="nowrap">EU 36–47</span></span></li>
+          <li><span class="item__name">Kereta</span><span class="item__price nums">Rp 959.000</span><span class="item__desc">From carreta, cart. Trail runner with a deep tread, <span class="nowrap">EU 37–47</span></span></li>
+        </ul>
+      </div>
+
+      <div class="sheet__group">
+        <h3 class="lead">Boots and dress shoes</h3>
+        <ul class="items">
+          <li><span class="item__name">Serdadu</span><span class="item__price nums">Rp 1.290.000</span><span class="item__desc">From soldado, soldier. Lace-up leather boot, <span class="nowrap">EU 38–47</span></span></li>
+          <li><span class="item__name">Mandor</span><span class="item__price nums">Rp 1.190.000</span><span class="item__desc">From mandador, foreman. Waterproof work boot, <span class="nowrap">EU 38–47</span></span></li>
+          <li><span class="item__name">Pesta</span><span class="item__price nums">Rp 1.090.000</span><span class="item__desc">From festa, party. Leather derby, <span class="nowrap">EU 38–46</span></span></li>
+          <li><span class="item__name">Kemeja</span><span class="item__price nums">Rp 1.190.000</span><span class="item__desc">From camisa, shirt. Leather oxford, <span class="nowrap">EU 38–46</span></span></li>
+          <li><span class="item__name">Dansa</span><span class="item__price nums">Rp 879.000</span><span class="item__desc">From dança, dance. Block heel, 5 cm, <span class="nowrap">EU 35–42</span></span></li>
+          <li><span class="item__name">Nona</span><span class="item__price nums">Rp 549.000</span><span class="item__desc">From dona, lady. Soft leather flat, <span class="nowrap">EU 35–42</span></span></li>
+        </ul>
+      </div>
+
+      <div class="sheet__group">
+        <h3 class="lead">Kids</h3>
+        <ul class="items">
+          <li><span class="item__name">Sekolah</span><span class="item__price nums">Rp 389.000</span><span class="item__desc">From escola, school. Black leather school shoe, <span class="nowrap">EU 28–38</span></span></li>
+          <li><span class="item__name">Bola</span><span class="item__price nums">Rp 349.000</span><span class="item__desc">From bola, ball. Sneaker with a hook-and-loop strap, <span class="nowrap">EU 24–34</span></span></li>
+          <li><span class="item__name">Boneka</span><span class="item__price nums">Rp 299.000</span><span class="item__desc">From boneca, doll. First walking shoe, <span class="nowrap">EU 19–24</span></span></li>
+        </ul>
+      </div>
+
+      <p class="sheet__hours">Open Monday to Saturday, 10.00 to 21.00<br>Sunday, 11.00 to 19.00</p>
+      <svg class="edge edge--bottom" aria-hidden="true"><rect width="100%" height="100%" fill="url(#scallops)"/></svg>
+    </div>
+  </section>
+
+  <!-- 4. Find your size: the slip -->
+  <section class="size section" id="size" aria-labelledby="size-title">
+    <div class="size__intro">
+      <h2 class="head" id="size-title" data-reveal style="--i:0">Find your size</h2>
+      <p class="lead" data-reveal style="--i:1">Stand on a sheet of paper, mark your heel and your longest toe, and measure between the marks. Put the length on the slip and it prints your size.</p>
+      <figure class="size__last" data-reveal style="--i:2">
+        <img src="assets/shoe-last.jpg" width="1920" height="1482" loading="lazy" decoding="async"
+             alt="Watercolour of a worn wooden shoe last with a metal plate on its heel, painted in 1938">
+        <figcaption class="small">A wooden last, the size of a foot made solid. Watercolour by Harvey Thoss, 1938.</figcaption>
+      </figure>
+    </div>
+
+    <div class="slip" data-reveal style="--i:1">
+      <form class="slip__body nums" id="size-form" novalidate>
+        <h3 class="slip__when">Before you order</h3>
+        <div class="row row--input">
+          <label for="foot">Your foot, heel to toe</label>
+          <span class="dots" aria-hidden="true"></span>
+          <span class="stepper">
+            <button type="button" class="step" data-step="-0.5" aria-label="Half a centimetre less">−</button>
+            <input id="foot" name="foot" type="text" inputmode="decimal" autocomplete="off" value="26.5" aria-describedby="foot-unit">
+            <span id="foot-unit">cm</span>
+            <button type="button" class="step" data-step="0.5" aria-label="Half a centimetre more">+</button>
+          </span>
+        </div>
+        <div class="row">
+          <span>Your size</span><span class="dots" aria-hidden="true"></span>
+          <output for="foot" id="size-eu" aria-live="polite">EU 42</output>
+        </div>
+        <div class="row">
+          <span>Also written as</span><span class="dots" aria-hidden="true"></span>
+          <output for="foot" id="size-other">UK 8 · US 9 men, 10 women</output>
+        </div>
+
+        <h3 class="slip__when">The day you order</h3>
+        <div class="row"><span>Packed and sent, if before 14.00</span><span class="dots" aria-hidden="true"></span><span>same day</span></div>
+
+        <h3 class="slip__when">Two to four days later</h3>
+        <div class="row"><span>At your door in Java</span><span class="dots" aria-hidden="true"></span><span>2–4 days</span></div>
+        <div class="row"><span>Other islands</span><span class="dots" aria-hidden="true"></span><span>4–7 days</span></div>
+
+        <h3 class="slip__when">If it does not fit</h3>
+        <div class="row"><span>Change the size, free</span><span class="dots" aria-hidden="true"></span><span>within 30 days</span></div>
+
+        <a class="slip__total" id="order-size" href="mailto:hello@sapatoo.example?subject=Order%20in%20size%20EU%2042&amp;body=I%20would%20like%20to%20order%20these%20shoes%20in%20size%20EU%2042%3A%20">
+          <span>Order in <b id="size-total">EU 42</b></span><span>2–4 days</span>
+        </a>
+      </form>
+      <noscript>
+        <table class="chart nums">
+          <caption class="small">Foot length and size</caption>
+          <tr><th scope="col">cm</th><th scope="col">EU</th><th scope="col">UK</th></tr>
+          <tr><td>22.5</td><td>36</td><td>3½</td></tr><tr><td>23.5</td><td>38</td><td>4½</td></tr>
+          <tr><td>24.5</td><td>39</td><td>5½</td></tr><tr><td>25.5</td><td>41</td><td>7</td></tr>
+          <tr><td>26.5</td><td>42</td><td>8</td></tr><tr><td>27.5</td><td>44</td><td>9½</td></tr>
+          <tr><td>28.5</td><td>45</td><td>10½</td></tr><tr><td>29.5</td><td>47</td><td>11½</td></tr>
+        </table>
+      </noscript>
+      <svg class="edge edge--zigzag" aria-hidden="true"><rect width="100%" height="100%" fill="url(#zigzag)"/></svg>
+    </div>
+  </section>
+
+  <!-- 5. The name: a letter -->
+  <section class="name" id="name" aria-labelledby="name-title">
+    <figure class="plate plate--map" data-reveal style="--i:0">
+      <img src="assets/portuguese-malacca-1635.jpg" width="1920" height="1325" loading="lazy" decoding="async"
+           alt="Hand-painted plan of Malacca in 1635: a walled town with red roofs on the shore, palms and hills behind">
+      <figcaption class="small">Malacca, painted for a Portuguese book of fortresses, 1635.</figcaption>
+    </figure>
+
+    <article class="letter" data-reveal style="--i:1">
+      <span class="letter__mark" aria-hidden="true"></span>
+      <h2 class="head" id="name-title">Why SAPATOO</h2>
+      <p>Sapato is Portuguese for shoe. Portuguese traders brought the word to Malacca in the 1500s, and it never left: in Indonesian, a shoe is still a sepatu.</p>
+      <p>Plenty of everyday words made the same trip. A party is a pesta, from festa. Sunday is Minggu, from domingo. A window is a jendela, from janela.</p>
+      <p>We liked that a word for shoe could walk that far. So the shop took the old spelling, with an extra O for the pair, and every shoe on our shelves is named after another word that made the journey.</p>
+      <p>We sell sneakers, running shoes, boots and dress shoes for men, women and children, from EU 24 to 47. If a size is wrong, bring it back or send it back and we will change it.</p>
+      <p class="letter__sign">The SAPATOO shop</p>
+      <a class="letter__strip" href="mailto:hello@sapatoo.example">hello@sapatoo.example</a>
+      <svg class="edge edge--bottom edge--small" aria-hidden="true"><rect width="100%" height="100%" fill="url(#scallops-small)"/></svg>
+    </article>
+
+    <figure class="plate plate--java" data-reveal style="--i:2">
+      <img src="assets/schoenmaker-op-java-bestanddeelnr-255-6718.jpg" width="1920" height="1921" loading="lazy" decoding="async"
+           alt="Black-and-white photograph of a shoemaker in a straw hat squatting on a tiled floor, mending a shoe among boots and leather offcuts">
+      <figcaption class="small">A shoemaker on Java in 1946. Photograph by Willem van de Poll.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 6. Questions -->
+  <section class="faq section" id="help" aria-labelledby="faq-title">
+    <div class="faq__side">
+      <h2 class="head" id="faq-title" data-reveal style="--i:0">Before you buy</h2>
+      <figure class="faq__film" data-reveal style="--i:1">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/shoemaker-in-puran-dhaka-poster.jpg" width="854" height="480" aria-hidden="true">
+          <source src="assets/shoemaker-in-puran-dhaka.webm" type="video/webm">
+        </video>
+        <figcaption class="small">Finishing sandals in Old Dhaka, 2023.</figcaption>
+      </figure>
+    </div>
+    <div class="faq__text" data-reveal style="--i:1">
+      <p><b>How do I find my size?</b> Measure your foot from heel to longest toe and put the length on the slip above. Between two sizes, take the larger one.</p>
+      <p><b>Can I change the size?</b> Yes. Bring or send the pair back unworn within 30 days and we send the right size free.</p>
+      <p><b>How long does delivery take?</b> Orders placed before 14.00 leave the same day. They reach most of Java in two to four days and the other islands in four to seven.</p>
+      <p><b>How much is delivery?</b> Free on orders over Rp 500.000. Below that, the courier’s rate is shown before you pay.</p>
+      <p><b>How can I pay?</b> Bank transfer, card or e-wallet online, and cash or card in the shop.</p>
+      <p><b>Can I collect in the shop?</b> Yes. Choose collection when you order and we keep the pair for you for seven days.</p>
+      <p><b>Do you make wide fits?</b> Minggu, Pesiar and Sekolah also come in a wide fit. Ask for it when you order.</p>
+      <p><b>How often should children’s feet be measured?</b> Every three months until they are about ten. Children’s sizes run from EU 19 to 38.</p>
+      <p><b>How do I look after leather?</b> Wipe it with a damp cloth, let it dry away from the sun, and polish it once a month.</p>
+      <p><b>Can I return a pair for a refund?</b> Yes, unworn and within 30 days. The money goes back the way you paid.</p>
+    </div>
+  </section>
+
+  <!-- 7. One word is the button -->
+  <section class="cta" aria-labelledby="cta-word">
+    <a class="cta__band" href="mailto:hello@sapatoo.example?subject=Order&amp;body=I%20would%20like%20to%20order%3A%0APair%3A%20%0AColour%3A%20%0ASize%20(EU)%3A%20">
+      <span class="cta__line">Write the pair and your size, and we reply with the total and a payment link.</span>
+      <svg class="cta__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 36L36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+      <h2 class="cta__word" id="cta-word">Order</h2>
+    </a>
+  </section>
+
+</main>
+
+<!-- 8. The back of the tag -->
+<footer class="footer" aria-labelledby="footer-title">
+  <div class="footer__top wrap">
+    <div class="footer__invite">
+      <h2 class="head" id="footer-title">Come and try them on</h2>
+      <a class="button button--paper" href="mailto:hello@sapatoo.example?subject=Question">Ask us a question</a>
+    </div>
+    <ul class="footer__links">
+      <li>[Shop address, city]</li>
+      <li><a class="link" href="mailto:hello@sapatoo.example">hello@sapatoo.example</a></li>
+      <li><a class="link" href="#instagram">Instagram</a></li>
+      <li><a class="link" href="#whatsapp">WhatsApp</a></li>
+    </ul>
+  </div>
+  <div class="footer__legal wrap small">
+    <p>Shoes drawn by SAPATOO. Pictures: <a href="https://commons.wikimedia.org/wiki/File:Shoe_trees.jpg">“Shoe trees”</a> by Wilfredor, CC0; <a href="https://commons.wikimedia.org/wiki/File:Harvey_Thoss,_Shoe_Last,_1938,_NGA_24116.jpg">“Shoe Last”</a> by Harvey Thoss, CC0; <a href="https://commons.wikimedia.org/wiki/File:Portuguese_Malacca_-_1635.jpg">“Portuguese Malacca, 1635”</a>, CC0; <a href="https://commons.wikimedia.org/wiki/File:Schoenmaker_op_Java,_Bestanddeelnr_255-6718.jpg">“Schoenmaker op Java”</a> by Willem van de Poll, CC0; film <a href="https://commons.wikimedia.org/wiki/File:Shoemaker_in_puran_dhaka.webm">“Shoemaker in puran dhaka”</a> by Wasiul Bahar, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>. All via Wikimedia Commons.</p>
+    <p>© 2026 SAPATOO · <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
+  </div>
+  <p class="footer__name" aria-hidden="true">SAPATOO</p>
+</footer>
+
+<!-- Edge shapes, drawn as patterns of filled circles and triangles -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="scallops" width="28" height="14" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="14" style="fill:var(--paper)"/></pattern>
+    <pattern id="scallops-small" width="16" height="8" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="8" style="fill:var(--paper)"/></pattern>
+    <pattern id="zigzag" width="20" height="12" patternUnits="userSpaceOnUse"><path d="M0 0H20L10 12Z" style="fill:var(--paper)"/></pattern>
+  </defs>
+</svg>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

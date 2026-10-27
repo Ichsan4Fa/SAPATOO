@@ -1,0 +1,9 @@
+# The installed design skill; skills-lock.json records where it comes from
+.claude/skills/
+
+# Screenshots the skill's inspector writes on every run
+.taste-skill/inspect/
+
+# System files
+.DS_Store
+Thumbs.db

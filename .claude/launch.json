@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sapatoo",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [".taste-skill/serve.mjs", "5173"],
+      "port": 5173
+    }
+  ]
+}
