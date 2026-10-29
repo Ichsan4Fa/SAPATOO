@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · SAPATOO</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#181715">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles are inline: this page is served for any missing address, at any depth, so relative links to css/ would break. -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 12px; background: #181715; color: #181715; font: 400 1.125rem/1.5 'General Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    .tag { width: min(520px, 100%); padding: 56px 40px 0; background: #f1f1ec; border-radius: 28px; corner-shape: scoop; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .eyelet { width: 44px; height: 44px; border-radius: 50%; background: #181715; border: 11px solid #bfb21a; margin-bottom: 40px; }
+    h1 { margin: 0; font-size: clamp(2.5rem, 2rem + 3vw, 4rem); line-height: 0.95; letter-spacing: -0.02em; text-wrap: balance; }
+    p { margin: 24px 0 0; max-width: 30ch; text-wrap: pretty; }
+    .stub { width: calc(100% + 80px); margin-top: 48px; padding: 28px 40px 36px; border-top: 4px dotted #63625c; }
+    a { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 1.6rem; background: #181715; color: #f1f1ec; font-weight: 500; text-decoration: none; transition: background-color 180ms ease, color 180ms ease; }
+    a:hover { background: #bfb21a; color: #181715; }
+    a:focus-visible { outline: 3px solid #bfb21a; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main class="tag">
+    <span class="eyelet" aria-hidden="true"></span>
+    <h1>No pair on this hook</h1>
+    <p>The page you followed is not here. The link may be old, or the page has moved.</p>
+    <div class="stub"><a href="/" data-home>Back to the shop</a></div>
+  </main>
+  <script>
+    // On GitHub Pages the shop lives in a folder named after the repository, so home is that folder, not the domain root.
+    const home = location.hostname.endsWith('github.io') ? `/${location.pathname.split('/')[1]}/` : '/';
+    document.querySelector('[data-home]').href = home;
+  </script>
+</body>
+</html>

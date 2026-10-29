@@ -4,8 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAPATOO shoe store</title>
-  <meta name="description" content="SAPATOO sells sneakers, running shoes, boots and dress shoes for men, women and kids, in sizes EU 24 to 47.">
+  <meta name="description" content="SAPATOO sells sneakers, running shoes, boots and dress shoes for men, women and kids, in sizes EU 19 to 47. Fill a bag and order on WhatsApp.">
+  <meta name="theme-color" content="#181715">
+  <link rel="canonical" href="https://ichsan4fa.github.io/SAPATOO/">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SAPATOO">
+  <meta property="og:title" content="SAPATOO shoe store">
+  <meta property="og:description" content="Sneakers, running shoes, boots and dress shoes for men, women and kids. Every pair is named after a word Indonesian took from Portuguese.">
+  <meta property="og:url" content="https://ichsan4fa.github.io/SAPATOO/">
+  <meta property="og:image" content="https://ichsan4fa.github.io/SAPATOO/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The SAPATOO swing tag and the Minggu sneaker on black">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ShoeStore",
+    "name": "SAPATOO",
+    "description": "Sneakers, running shoes, boots and dress shoes for men, women and kids, in sizes EU 19 to 47.",
+    "url": "https://ichsan4fa.github.io/SAPATOO/",
+    "image": "https://ichsan4fa.github.io/SAPATOO/assets/og.png",
+    "email": "hello@sapatoo.example",
+    "priceRange": "Rp 299.000 to Rp 1.290.000",
+    "currenciesAccepted": "IDR",
+    "paymentAccepted": "Bank transfer, card, e-wallet, cash",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "10:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "19:00" }
+    ]
+  }
+  </script>
   <script>document.documentElement.classList.add('js')</script>
+  <script type="module" src="js/main.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
@@ -59,7 +93,10 @@
         <a class="link" href="#prices">Price list</a>
         <a class="link" href="#size">Find your size</a>
       </nav>
-      <a class="button button--brass" href="#prices">Shop now</a>
+      <div class="topbar__end">
+        <button class="bag-button" type="button" data-open-bag hidden>Bag <span class="bag-count" data-bag-count>0</span></button>
+        <a class="button button--brass" href="#prices">Shop now</a>
+      </div>
     </div>
 
     <div class="tag" data-load style="--d:80ms">
@@ -70,7 +107,7 @@
       </h1>
       <p class="tag__lead">Sneakers, running shoes, boots and dress shoes for men, women and kids.</p>
       <p class="tag__details small">
-        <span>Sizes EU 24 to 47</span><span class="diamond" aria-hidden="true"></span>
+        <span>Sizes EU 19 to 47</span><span class="diamond" aria-hidden="true"></span>
         <span>Pairs from Rp 299.000</span><span class="diamond" aria-hidden="true"></span>
         <span>Free size exchange</span>
       </p>
@@ -98,7 +135,7 @@
   <!-- 2. Showcase: this season's pair -->
   <section class="showcase section" id="minggu-sneaker" aria-labelledby="minggu-title">
     <figure class="showcase__plate" data-reveal style="--i:0">
-      <svg class="showcase__shoe" data-colour="black" viewBox="0 0 700 420" role="img" aria-label="Drawing of a pair of Minggu sneakers in black, side view">
+      <svg class="showcase__shoe shoe" data-colour="black" viewBox="0 0 700 420" role="img" aria-label="Drawing of a pair of Minggu sneakers in black, side view">
         <use class="pair-back" href="#minggu" x="60" y="0" width="640" height="290"/>
         <use href="#minggu" x="0" y="118" width="640" height="290"/>
       </svg>
@@ -115,7 +152,7 @@
         <p class="showcase__price nums" data-reveal style="--i:4">Rp 459.000 <span>EU 36 to 46</span></p>
       </div>
       <div class="cells" data-reveal style="--i:5">
-        <a class="cell cell--ink" id="order-minggu" href="https://wa.me/62XXXXXXXXXX?text=Hello%20SAPATOO%2C%20I%20would%20like%20to%20order%3A%0APair%3A%20Minggu%20sneaker%20in%20black%2C%20Rp%20459.000%0ASize%3A%20EU%20%0ADeliver%20to%3A%20" target="_blank" rel="noopener"><span>Order in <span data-colour-name>black</span> on WhatsApp</span></a>
+        <a class="cell cell--ink" id="order-minggu" href="#size" data-pair="Minggu" data-open-sheet="Minggu"><span>Order in <span data-colour-name>black</span></span></a>
         <a class="cell cell--tone" href="#size" data-pair="Minggu">Find your size</a>
       </div>
     </div>
@@ -128,45 +165,45 @@
     <div class="sheet" data-reveal style="--i:0">
       <svg class="edge edge--top" aria-hidden="true"><rect width="100%" height="100%" fill="url(#scallops)"/></svg>
       <h2 class="head" id="prices-title">The price list</h2>
-      <p class="sheet__note small">Every pair is named after a word Indonesian took from Portuguese. Pick one to order it in your size.</p>
+      <p class="sheet__note small">Every pair is named after a word Indonesian took from Portuguese. Pick one to choose its size and add it to your bag.</p>
 
       <div class="sheet__group">
         <h3 class="lead">Sneakers</h3>
         <ul class="items">
-          <li><a class="item" href="#size" data-pair="Minggu" data-sizes="36-46"><span class="item__name">Minggu</span><span class="item__price nums">Rp 459.000</span><span class="item__desc">From domingo, Sunday. Canvas, gum sole, <span class="nowrap">EU 36–46</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Tinta" data-sizes="36-46"><span class="item__name">Tinta</span><span class="item__price nums">Rp 649.000</span><span class="item__desc">From tinta, ink. Black leather court shoe, <span class="nowrap">EU 36–46</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Jendela" data-sizes="36-46"><span class="item__name">Jendela</span><span class="item__price nums">Rp 529.000</span><span class="item__desc">From janela, window. Open-mesh low-top, <span class="nowrap">EU 36–46</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Bendera" data-sizes="36-46"><span class="item__name">Bendera</span><span class="item__price nums">Rp 699.000</span><span class="item__desc">From bandeira, flag. High-top in three colours, <span class="nowrap">EU 36–46</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Minggu" data-sizes="36-46" data-price="459000" data-colours="black,chalk,brass"><span class="item__name">Minggu</span><span class="item__price nums">Rp 459.000</span><span class="item__desc">From domingo, Sunday. Canvas, gum sole, <span class="nowrap">EU 36–46</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Tinta" data-sizes="36-46" data-price="649000"><span class="item__name">Tinta</span><span class="item__price nums">Rp 649.000</span><span class="item__desc">From tinta, ink. Black leather court shoe, <span class="nowrap">EU 36–46</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Jendela" data-sizes="36-46" data-price="529000"><span class="item__name">Jendela</span><span class="item__price nums">Rp 529.000</span><span class="item__desc">From janela, window. Open-mesh low-top, <span class="nowrap">EU 36–46</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Bendera" data-sizes="36-46" data-price="699000"><span class="item__name">Bendera</span><span class="item__price nums">Rp 699.000</span><span class="item__desc">From bandeira, flag. High-top in three colours, <span class="nowrap">EU 36–46</span></span></a></li>
         </ul>
       </div>
 
       <div class="sheet__group">
         <h3 class="lead">Running and walking</h3>
         <ul class="items">
-          <li><a class="item" href="#size" data-pair="Roda" data-sizes="36-47"><span class="item__name">Roda</span><span class="item__price nums">Rp 899.000</span><span class="item__desc">From roda, wheel. Road running shoe, <span class="nowrap">EU 36–47</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Pesiar" data-sizes="36-47"><span class="item__name">Pesiar</span><span class="item__price nums">Rp 749.000</span><span class="item__desc">From passear, to stroll. Cushioned walking shoe, <span class="nowrap">EU 36–47</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Kereta" data-sizes="37-47"><span class="item__name">Kereta</span><span class="item__price nums">Rp 959.000</span><span class="item__desc">From carreta, cart. Trail runner with a deep tread, <span class="nowrap">EU 37–47</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Roda" data-sizes="36-47" data-price="899000"><span class="item__name">Roda</span><span class="item__price nums">Rp 899.000</span><span class="item__desc">From roda, wheel. Road running shoe, <span class="nowrap">EU 36–47</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Pesiar" data-sizes="36-47" data-price="749000"><span class="item__name">Pesiar</span><span class="item__price nums">Rp 749.000</span><span class="item__desc">From passear, to stroll. Cushioned walking shoe, <span class="nowrap">EU 36–47</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Kereta" data-sizes="37-47" data-price="959000"><span class="item__name">Kereta</span><span class="item__price nums">Rp 959.000</span><span class="item__desc">From carreta, cart. Trail runner with a deep tread, <span class="nowrap">EU 37–47</span></span></a></li>
         </ul>
       </div>
 
       <div class="sheet__group">
         <h3 class="lead">Boots and dress shoes</h3>
         <ul class="items">
-          <li><a class="item" href="#size" data-pair="Serdadu" data-sizes="38-47"><span class="item__name">Serdadu</span><span class="item__price nums">Rp 1.290.000</span><span class="item__desc">From soldado, soldier. Lace-up leather boot, <span class="nowrap">EU 38–47</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Mandor" data-sizes="38-47"><span class="item__name">Mandor</span><span class="item__price nums">Rp 1.190.000</span><span class="item__desc">From mandador, foreman. Waterproof work boot, <span class="nowrap">EU 38–47</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Pesta" data-sizes="38-46"><span class="item__name">Pesta</span><span class="item__price nums">Rp 1.090.000</span><span class="item__desc">From festa, party. Leather derby, <span class="nowrap">EU 38–46</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Kemeja" data-sizes="38-46"><span class="item__name">Kemeja</span><span class="item__price nums">Rp 1.190.000</span><span class="item__desc">From camisa, shirt. Leather oxford, <span class="nowrap">EU 38–46</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Dansa" data-sizes="35-42"><span class="item__name">Dansa</span><span class="item__price nums">Rp 879.000</span><span class="item__desc">From dança, dance. Block heel, 5 cm, <span class="nowrap">EU 35–42</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Nona" data-sizes="35-42"><span class="item__name">Nona</span><span class="item__price nums">Rp 549.000</span><span class="item__desc">From dona, lady. Soft leather flat, <span class="nowrap">EU 35–42</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Serdadu" data-sizes="38-47" data-price="1290000"><span class="item__name">Serdadu</span><span class="item__price nums">Rp 1.290.000</span><span class="item__desc">From soldado, soldier. Lace-up leather boot, <span class="nowrap">EU 38–47</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Mandor" data-sizes="38-47" data-price="1190000"><span class="item__name">Mandor</span><span class="item__price nums">Rp 1.190.000</span><span class="item__desc">From mandador, foreman. Waterproof work boot, <span class="nowrap">EU 38–47</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Pesta" data-sizes="38-46" data-price="1090000"><span class="item__name">Pesta</span><span class="item__price nums">Rp 1.090.000</span><span class="item__desc">From festa, party. Leather derby, <span class="nowrap">EU 38–46</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Kemeja" data-sizes="38-46" data-price="1190000"><span class="item__name">Kemeja</span><span class="item__price nums">Rp 1.190.000</span><span class="item__desc">From camisa, shirt. Leather oxford, <span class="nowrap">EU 38–46</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Dansa" data-sizes="35-42" data-price="879000"><span class="item__name">Dansa</span><span class="item__price nums">Rp 879.000</span><span class="item__desc">From dança, dance. Block heel, 5 cm, <span class="nowrap">EU 35–42</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Nona" data-sizes="35-42" data-price="549000"><span class="item__name">Nona</span><span class="item__price nums">Rp 549.000</span><span class="item__desc">From dona, lady. Soft leather flat, <span class="nowrap">EU 35–42</span></span></a></li>
         </ul>
       </div>
 
       <div class="sheet__group">
         <h3 class="lead">Kids</h3>
         <ul class="items">
-          <li><a class="item" href="#size" data-pair="Sekolah" data-sizes="28-38"><span class="item__name">Sekolah</span><span class="item__price nums">Rp 389.000</span><span class="item__desc">From escola, school. Black leather school shoe, <span class="nowrap">EU 28–38</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Bola" data-sizes="24-34"><span class="item__name">Bola</span><span class="item__price nums">Rp 349.000</span><span class="item__desc">From bola, ball. Sneaker with a hook-and-loop strap, <span class="nowrap">EU 24–34</span></span></a></li>
-          <li><a class="item" href="#size" data-pair="Boneka" data-sizes="19-24"><span class="item__name">Boneka</span><span class="item__price nums">Rp 299.000</span><span class="item__desc">From boneca, doll. First walking shoe, <span class="nowrap">EU 19–24</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Sekolah" data-sizes="28-38" data-price="389000"><span class="item__name">Sekolah</span><span class="item__price nums">Rp 389.000</span><span class="item__desc">From escola, school. Black leather school shoe, <span class="nowrap">EU 28–38</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Bola" data-sizes="24-34" data-price="349000"><span class="item__name">Bola</span><span class="item__price nums">Rp 349.000</span><span class="item__desc">From bola, ball. Sneaker with a hook-and-loop strap, <span class="nowrap">EU 24–34</span></span></a></li>
+          <li><a class="item" href="#size" data-pair="Boneka" data-sizes="19-24" data-price="299000"><span class="item__name">Boneka</span><span class="item__price nums">Rp 299.000</span><span class="item__desc">From boneca, doll. First walking shoe, <span class="nowrap">EU 19–24</span></span></a></li>
         </ul>
       </div>
 
@@ -237,10 +274,9 @@
         <h3 class="slip__when">If it does not fit</h3>
         <div class="row"><span>Change the size, free</span><span class="dots" aria-hidden="true"></span><span>within 30 days</span></div>
 
-        <a class="slip__total" id="order-size" href="https://wa.me/62XXXXXXXXXX?text=Hello%20SAPATOO%2C%20I%20would%20like%20to%20order%3A%0APair%3A%20%0ASize%3A%20EU%20%0ADeliver%20to%3A%20" target="_blank" rel="noopener">
-          <span id="size-total" aria-live="polite">Send your order</span><span id="size-via">on WhatsApp</span>
-        </a>
-        <p class="slip__alt small" id="order-email-line">No WhatsApp? <a id="order-email" href="mailto:hello@sapatoo.example?subject=Order&amp;body=Hello%20SAPATOO%2C%20I%20would%20like%20to%20order%3A%0APair%3A%20%0ASize%3A%20EU%20%0ADeliver%20to%3A%20">Send the order by email</a></p>
+        <button class="slip__total" type="submit" id="add-size" data-js-row hidden>
+          <span id="size-total" aria-live="polite">Add Minggu, EU 42</span><span id="size-via">to your bag</span>
+        </button>
       </form>
       <noscript>
         <table class="chart nums">
@@ -270,7 +306,7 @@
       <p>Sapato is Portuguese for shoe. Portuguese traders brought the word to Malacca in the 1500s, and it never left: in Indonesian, a shoe is still a sepatu.</p>
       <p>Plenty of everyday words made the same trip. A party is a pesta, from festa. Sunday is Minggu, from domingo. A window is a jendela, from janela.</p>
       <p>We liked that a word for shoe could walk that far. So the shop took the old spelling, with an extra O for the pair, and every shoe on our shelves is named after another word that made the journey.</p>
-      <p>We sell sneakers, running shoes, boots and dress shoes for men, women and children, from EU 24 to 47. If a size is wrong, bring it back or send it back and we will change it.</p>
+      <p>We sell sneakers, running shoes, boots and dress shoes for men, women and children, from EU 19 to 47. If a size is wrong, bring it back or send it back and we will change it.</p>
       <p class="letter__sign">The SAPATOO shop</p>
       <a class="letter__strip" href="mailto:hello@sapatoo.example">hello@sapatoo.example</a>
       <svg class="edge edge--bottom edge--small" aria-hidden="true"><rect width="100%" height="100%" fill="url(#scallops-small)"/></svg>
@@ -295,7 +331,7 @@
       </figure>
     </div>
     <div class="faq__text" data-reveal style="--i:1">
-      <p><b>How do I order?</b> Pick a pair on the price list, put your foot length on the slip and send the order on WhatsApp. We reply with the total and a payment link. No WhatsApp? Email <a href="mailto:hello@sapatoo.example">hello@sapatoo.example</a>.</p>
+      <p><b>How do I order?</b> Pick pairs on the price list, choose their sizes and add them to your bag. At checkout the order goes to us on WhatsApp, and we reply with the total and a payment link. No WhatsApp? The checkout can send it by email to <a href="mailto:hello@sapatoo.example">hello@sapatoo.example</a>.</p>
       <p><b>How do I find my size?</b> Measure your foot from heel to longest toe and put the length on the slip above. Between two sizes, take the larger one.</p>
       <p><b>Can I change the size?</b> Yes. Bring or send the pair back unworn within 30 days and we send the right size free.</p>
       <p><b>How long does delivery take?</b> Orders placed before 14.00 leave the same day. They reach most of Java in two to four days and the other islands in four to seven.</p>
@@ -311,8 +347,8 @@
 
   <!-- 7. One word is the button -->
   <section class="cta" aria-labelledby="cta-word">
-    <a class="cta__band" href="https://wa.me/62XXXXXXXXXX?text=Hello%20SAPATOO%2C%20I%20would%20like%20to%20order%3A%0APair%3A%20%0AColour%3A%20%0ASize%3A%20EU%20%0ADeliver%20to%3A%20" target="_blank" rel="noopener">
-      <span class="cta__line">WhatsApp us the pair and your size. We reply with the total and a payment link.</span>
+    <a class="cta__band" href="#prices" data-cta>
+      <span class="cta__line" data-cta-line>Fill a bag from the price list and send it on WhatsApp. We reply with a payment link.</span>
       <svg class="cta__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 36L36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
       <h2 class="cta__word" id="cta-word">Order</h2>
     </a>
@@ -341,6 +377,122 @@
   <p class="footer__name" aria-hidden="true">SAPATOO</p>
 </footer>
 
+<!-- The bag, reachable from anywhere once it has something in it -->
+<button class="bag-fab" type="button" data-open-bag data-bag-fab hidden>Your bag <span class="bag-count" data-bag-count>0</span></button>
+
+<!-- A pair's own swing tag: details, colour, size, add to bag -->
+<dialog class="pair-dialog" id="pair-sheet" aria-labelledby="pair-title">
+  <form class="pair-tag" id="pair-form" novalidate>
+    <button class="dialog-close" type="button" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg>
+    </button>
+    <span class="tag__eyelet" aria-hidden="true"></span>
+    <svg class="pair-tag__shoe shoe" data-colour="black" viewBox="0 0 640 290" aria-hidden="true" hidden><use href="#minggu"/></svg>
+    <h2 class="pair-tag__title" id="pair-title" tabindex="-1" autofocus>Minggu</h2>
+    <p class="pair-tag__desc" id="pair-desc"></p>
+    <p class="pair-tag__price nums" id="pair-price-tag"></p>
+    <fieldset class="chips" id="pair-colours" hidden>
+      <legend>Colour</legend>
+      <div class="chips__list" data-chips="colour"></div>
+    </fieldset>
+    <fieldset class="chips">
+      <legend>Size, EU</legend>
+      <div class="chips__list" data-chips="size"></div>
+      <p class="chips__note small" id="pair-size-note" aria-live="polite"></p>
+    </fieldset>
+    <div class="pair-tag__stub">
+      <button class="action" type="submit">Add to bag</button>
+      <a class="pair-tag__find small" href="#size" data-close>Not sure of the size? Measure your foot on the slip</a>
+    </div>
+  </form>
+</dialog>
+
+<!-- The bag and its checkout, printed like a receipt -->
+<dialog class="bag-dialog" id="bag" aria-labelledby="bag-title">
+  <div class="bag">
+    <div class="bag__head">
+      <h2 class="bag__title" id="bag-title" tabindex="-1" autofocus>Your bag</h2>
+      <button class="dialog-close" type="button" data-close aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg>
+      </button>
+    </div>
+
+    <section class="bag__step" data-step="bag" aria-label="Pairs in your bag">
+      <p class="bag__empty" data-bag-empty>Nothing in your bag yet. <a href="#prices" data-close>Pick a pair from the price list</a>.</p>
+      <ul class="bag-lines" data-bag-lines></ul>
+      <div data-bag-filled>
+        <div class="row bag__total nums"><span>Subtotal</span><span class="dots" aria-hidden="true"></span><output data-bag-subtotal>Rp 0</output></div>
+        <p class="bag__note small" data-bag-delivery></p>
+        <div class="bag__actions">
+          <button class="action" type="button" data-step-to="details">Check out</button>
+          <button class="action action--quiet" type="button" data-close>Keep shopping</button>
+        </div>
+      </div>
+    </section>
+
+    <form class="bag__step" data-step="details" id="checkout" novalidate hidden>
+      <h3 class="bag__when">Your details</h3>
+      <label class="field">
+        <span>Your name</span>
+        <input name="name" type="text" autocomplete="name" required>
+      </label>
+      <fieldset class="field">
+        <legend>Delivery</legend>
+        <label class="option"><input type="radio" name="delivery" value="courier" checked> Courier to my address</label>
+        <label class="option"><input type="radio" name="delivery" value="collect"> I will collect it in the shop</label>
+      </fieldset>
+      <label class="field" data-address>
+        <span>Street, city and postcode</span>
+        <textarea name="address" rows="3" autocomplete="street-address" required></textarea>
+      </label>
+      <label class="field">
+        <span>Payment</span>
+        <select name="payment">
+          <option value="transfer">Bank transfer</option>
+          <option value="card">Card</option>
+          <option value="ewallet">E-wallet</option>
+          <option value="shop" disabled>Cash or card in the shop</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Note, if you have one</span>
+        <textarea name="note" rows="2"></textarea>
+      </label>
+      <div class="row bag__total nums"><span>Subtotal</span><span class="dots" aria-hidden="true"></span><output data-bag-subtotal>Rp 0</output></div>
+      <p class="bag__note small">We reply on WhatsApp with the total, the delivery cost and a payment link.</p>
+      <div class="bag__actions">
+        <button class="action" type="submit">Send the order on WhatsApp</button>
+        <button class="action action--quiet" type="button" data-email-order>Send it by email instead</button>
+        <button class="action action--quiet" type="button" data-step-to="bag">Back to the bag</button>
+      </div>
+    </form>
+
+    <section class="bag__step" data-step="sent" aria-labelledby="sent-title" hidden>
+      <h3 class="bag__when" id="sent-title" tabindex="-1">Order <span class="nums" data-order-number></span> is ready</h3>
+      <p>Press send in WhatsApp or in your email. We reply within shop hours with the total, the delivery cost and a payment link.</p>
+      <p class="bag__note small">Nothing opened? <a data-resend-whatsapp target="_blank" rel="noopener">Open WhatsApp again</a> or <a data-resend-email>send it by email</a>.</p>
+      <div class="bag__actions">
+        <button class="action" type="button" data-finish>Done, empty my bag</button>
+        <button class="action action--quiet" type="button" data-close>Keep the bag</button>
+      </div>
+    </section>
+  </div>
+</dialog>
+
+<template id="bag-line">
+  <li class="bag-line">
+    <div class="bag-line__top"><span class="bag-line__name"></span><span class="dots" aria-hidden="true"></span><span class="bag-line__price nums"></span></div>
+    <div class="bag-line__controls">
+      <span class="stepper">
+        <button type="button" class="step" data-change="-1">−</button>
+        <output class="bag-line__quantity nums"></output>
+        <button type="button" class="step" data-change="1">+</button>
+      </span>
+      <button type="button" class="bag-line__remove" data-remove>Remove</button>
+    </div>
+  </li>
+</template>
+
 <!-- Edge shapes, drawn as patterns of filled circles and triangles -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -350,6 +502,5 @@
   </defs>
 </svg>
 
-<script src="js/main.js" defer></script>
 </body>
 </html>

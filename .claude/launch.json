@@ -4,7 +4,7 @@
     {
       "name": "sapatoo",
       "runtimeExecutable": "node",
-      "runtimeArgs": [".taste-skill/serve.mjs", "5173"],
+      "runtimeArgs": ["scripts/serve.mjs", "5173"],
       "port": 5173
     }
   ]

@@ -1,0 +1,17 @@
+{
+  "name": "SAPATOO shoe store",
+  "short_name": "SAPATOO",
+  "description": "Sneakers, running shoes, boots and dress shoes for men, women and kids. Fill a bag and order on WhatsApp.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#181715",
+  "theme_color": "#181715",
+  "icons": [
+    { "src": "assets/icons/icon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "assets/icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}

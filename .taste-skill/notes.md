@@ -75,6 +75,15 @@ and Price rows and its total line now sends the order on WhatsApp, with email as
 the measured size says which sizes it comes in instead of offering an order. The shop's number is the placeholder
 62XXXXXXXXXX in index.html and js/main.js.
 
+## The shop (added after the WhatsApp ordering)
+The page became a working shop without a server. Each pair on the price list opens its own swing tag (a modal
+in the tag's language: eyelet, scooped corners, a dotted stub holding the Add button) with colour and size chips;
+the bag is a receipt-style side panel with dotted leaders; checkout collects name, delivery or collection, payment
+preference and a note, and sends the order with a number on WhatsApp or by email. The slip's total line adds
+the pair in the measured size. A floating bag button appears only when the header's bag is out of sight and the
+footer is not on screen. Offline support, an install manifest, the "OO" pair-mark icon and a link preview
+picture (scripts/render-images.mjs) were added; the logic moved into tested modules (tests/).
+
 ## Deviations
 - Hero field is the ink colour, not a soft colour: the palette flips whole sections to near-black, and the paper tag
   needs a contrasting ground. The action button is brass (accent on the action).

@@ -4,6 +4,10 @@
 # Screenshots the skill's inspector writes on every run
 .taste-skill/inspect/
 
+# What the publish workflow collects, and anything npm might add later
+_site/
+node_modules/
+
 # System files
 .DS_Store
 Thumbs.db
