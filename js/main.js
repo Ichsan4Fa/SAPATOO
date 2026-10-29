@@ -1,7 +1,7 @@
 // SAPATOO: the page's moving parts, wired together. The shop's logic lives in js/*.js (and is tested in tests/);
 // each module in js/ui/ owns one part of the page.
 import { readCatalog } from './catalog.js';
-import { createBag } from './bag.js';
+import { createBag, reconcileLines } from './bag.js';
 import { createSelection } from './selection.js';
 import { applyShopDetails } from './ui/shop-links.js';
 import { startReveals } from './ui/reveal.js';
@@ -13,7 +13,7 @@ import { setUpPairSheet } from './ui/pair-sheet.js';
 import { setUpBagPanel } from './ui/bag-panel.js';
 
 const catalog = readCatalog();
-const bag = createBag();
+const bag = createBag({ check: (lines) => reconcileLines(lines, catalog) });
 const selection = createSelection({ pair: 'Minggu', colour: 'black', footSize: null });
 
 applyShopDetails();

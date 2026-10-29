@@ -59,8 +59,8 @@ const preview = page(1200, 630, `
     <p class="line">Sneakers, running shoes, boots and dress shoes. Every pair is named after a word Indonesian took from Portuguese.</p>
   </div>
   <svg class="shoe" viewBox="0 0 640 290"><use href="#minggu"/></svg>
-</div>`, `<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,700&display=block" rel="stylesheet">
-<style>
+</div>`, `<style>
+  ${[['Regular', 400], ['Bold', 700]].map(([name, weight]) => `@font-face{font-family:'General Sans';src:url('${pathToFileURL(join(root, 'assets', 'fonts', `GeneralSans-${name}.woff2`)).href}') format('woff2');font-weight:${weight};font-display:block}`).join('\n  ')}
   .card{box-sizing:border-box;width:1200px;height:630px;padding:72px 64px;display:grid;grid-template-columns:minmax(0,1fr) 460px;align-items:center;gap:40px;font-family:'General Sans',sans-serif;color:#e8e8e3}
   .eyelet{display:block;width:44px;height:44px;border-radius:50%;background:#181715;border:11px solid #bfb21a;box-sizing:border-box;margin-bottom:40px}
   .name{margin:0;font-size:112px;font-weight:700;line-height:.9;letter-spacing:-.03em;color:#bfb21a}

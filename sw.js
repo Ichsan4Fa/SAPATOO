@@ -1,13 +1,17 @@
 // Keeps the shop usable without a connection. Every request goes to the network first, so a visitor always
 // gets the newest page when online; the copy saved last time is used only when the network fails.
 // Change VERSION when the list of core files below changes.
-const VERSION = 'sapatoo-v1';
+const VERSION = 'sapatoo-v2';
 const CORE = [
   './',
   'index.html',
   '404.html',
   'manifest.webmanifest',
+  'css/fonts.css',
   'css/style.css',
+  'assets/fonts/GeneralSans-Regular.woff2',
+  'assets/fonts/GeneralSans-Medium.woff2',
+  'assets/fonts/GeneralSans-Bold.woff2',
   'js/main.js',
   'js/shop.js',
   'js/sizes.js',
@@ -32,10 +36,14 @@ self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
 
+// Every GitHub Pages site of the same account shares one origin, and so one set of caches: only this shop's
+// own older caches are deleted, never another site's.
+const isOldShopCache = (key) => key.startsWith('sapatoo-') && key !== VERSION;
+
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== VERSION).map((key) => caches.delete(key))))
+      .then((keys) => Promise.all(keys.filter(isOldShopCache).map((key) => caches.delete(key))))
       .then(() => self.clients.claim()),
   );
 });

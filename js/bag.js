@@ -21,6 +21,19 @@ export const setQuantity = (lines, key, quantity) => {
 export const countPairs = (lines) => lines.reduce((sum, line) => sum + line.quantity, 0);
 export const subtotal = (lines) => lines.reduce((sum, line) => sum + line.price * line.quantity, 0);
 
+// A saved bag can date from before a price change, or be edited by hand, so every line is checked against
+// today's price list: pairs no longer sold and sizes or colours a pair doesn't come in are dropped, and the
+// price is always today's. `catalog` maps a pair's name to { price, min, max, colours }.
+export const reconcileLines = (lines, catalog) => lines.reduce((kept, line) => {
+  const pair = catalog.get(line.pair);
+  if (!pair || line.size < pair.min || line.size > pair.max) return kept;
+  if (pair.colours.length > 0 && !pair.colours.includes(line.colour)) return kept;
+  const current = { pair: line.pair, colour: pair.colours.length > 0 ? line.colour : null, size: line.size, price: pair.price, quantity: line.quantity };
+  const key = lineKey(current);
+  if (!kept.some((entry) => lineKey(entry) === key)) return [...kept, current];
+  return kept.map((entry) => (lineKey(entry) === key ? { ...entry, quantity: Math.min(MAX_QUANTITY, entry.quantity + current.quantity) } : entry));
+}, []);
+
 // Anything read back from storage was written by an older page or edited by hand, so only well-formed lines survive.
 const isLine = (line) => line !== null && typeof line === 'object'
   && typeof line.pair === 'string' && line.pair !== ''
@@ -55,8 +68,15 @@ const deviceStorage = () => {
   }
 };
 
-export const createBag = (storage = deviceStorage()) => {
-  let lines = readLines(storage);
+// `check` is applied to every bag read back from storage (see reconcileLines); corrected lines are saved again.
+export const createBag = ({ storage = deviceStorage(), check = (lines) => lines } = {}) => {
+  const load = () => {
+    const saved = readLines(storage);
+    const checked = check(saved);
+    if (JSON.stringify(checked) !== JSON.stringify(saved)) writeLines(storage, checked);
+    return checked;
+  };
+  let lines = load();
   const listeners = new Set();
   const publish = () => listeners.forEach((listener) => listener(lines));
   const commit = (next) => { lines = next; writeLines(storage, lines); publish(); };
@@ -64,7 +84,7 @@ export const createBag = (storage = deviceStorage()) => {
   if (typeof window !== 'undefined') {
     window.addEventListener('storage', (event) => {
       if (event.key !== STORAGE_KEY) return;
-      lines = readLines(storage);
+      lines = load();
       publish();
     });
   }

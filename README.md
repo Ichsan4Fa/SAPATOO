@@ -31,7 +31,7 @@ npm test
 npm run images
 ```
 
-`npm test` checks the size, bag and order maths. `npm run images` redraws the app icons and the link preview picture from `assets/icons/icon.svg` and the shoe drawing; it needs Chrome or Edge.
+`npm test` checks the size, bag and order maths and the local server's guards. `npm run images` redraws the app icons and the link preview picture from `assets/icons/icon.svg` and the shoe drawing; it needs Chrome or Edge.
 
 ## Before going live
 
@@ -46,9 +46,18 @@ npm run images
 
 When you add or rename a file in `js/`, add it to the list in `sw.js` and change its `VERSION`, so returning visitors get the new files.
 
+## Security notes
+
+- **Totals in an order message are the customer's claim.** The page checks every saved bag against today's price list, but a WhatsApp or email message can be edited before it is sent. Always reply with the total from your own price list.
+- **One address, shared.** Every GitHub Pages site of one account lives under the same address (`ichsan4fa.github.io`), and sites there can read each other's saved data. If you publish other sites on this account, give the shop its own domain.
+- **The local server is for this computer only.** `npm start` answers only requests for `localhost`, never serves hidden files such as `.git`, and stays inside the project folder.
+- **No third parties at visit time.** The fonts are hosted with the site, so a visit only contacts GitHub Pages; WhatsApp and email are opened only when the visitor sends an order.
+
 ## Publish
 
 `.github/workflows/pages.yml` runs the tests and publishes the site to GitHub Pages on every push to `main`. Turn it on once in the repository: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+The steps the workflow borrows from GitHub (`actions/checkout` and the others) are pinned to exact commits, because a version label like `v4` can be moved to different code. The comment beside each one names its release. To update a step, find the new release on its GitHub page and copy that release's full commit ID.
 
 ## Where things are
 
@@ -58,6 +67,8 @@ When you add or rename a file in `js/`, add it to the list in `sw.js` and change
 - `scripts/` holds the local server and the image renderer; `tests/` holds the tests.
 - `.taste-skill/notes.md` has the design notes: the idea behind the page and why it looks the way it does.
 
-## Pictures
+## Pictures and type
+
+The typeface is General Sans by the Indian Type Foundry, used under the ITF Free Font License from [Fontshare](https://www.fontshare.com/fonts/general-sans); its files are in `assets/fonts/`.
 
 The shoes are drawn by SAPATOO. The other pictures come from Wikimedia Commons: "Shoe trees" by Wilfredor (CC0), "Shoe Last" by Harvey Thoss (CC0), "Portuguese Malacca, 1635" (CC0), "Schoenmaker op Java" by Willem van de Poll (CC0), and the film "Shoemaker in puran dhaka" by Wasiul Bahar (CC BY-SA 4.0). Full credits are in `assets/credits.json` and the page footer.

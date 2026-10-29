@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addToBag, setQuantity, removeLine, countPairs, subtotal, lineKey, readLines, createBag, MAX_QUANTITY } from '../js/bag.js';
+import { addToBag, setQuantity, removeLine, countPairs, subtotal, lineKey, readLines, createBag, reconcileLines, MAX_QUANTITY } from '../js/bag.js';
 
 const tinta = { pair: 'Tinta', colour: null, size: 42, price: 649000 };
 const minggu = { pair: 'Minggu', colour: 'black', size: 42, price: 459000 };
@@ -46,9 +46,40 @@ test('a bag saved earlier comes back, and broken saves are dropped', () => {
   assert.deepEqual(readLines(fakeStorage(JSON.stringify([{ pair: 'Tinta', size: '42' }, { ...tinta, quantity: 1 }]))), [{ ...tinta, quantity: 1 }]);
 });
 
+const catalog = new Map([
+  ['Tinta', { price: 649000, min: 36, max: 46, colours: [] }],
+  ['Minggu', { price: 459000, min: 36, max: 46, colours: ['black', 'chalk', 'brass'] }],
+  ['Boneka', { price: 299000, min: 19, max: 24, colours: [] }],
+]);
+
+test('a saved bag takes today\'s prices and loses pairs, sizes and colours that are not sold', () => {
+  // The tampered bag from the security audit, plus an old price and a duplicate line.
+  const saved = [
+    { pair: 'Tinta', colour: null, size: 42, price: 1000, quantity: 2 },
+    { pair: 'Discontinued pair', colour: 'gold', size: 12, price: 5000, quantity: 1 },
+    { pair: 'Boneka', colour: null, size: 45, price: 299000, quantity: 1 },
+    { pair: 'Minggu', colour: 'gold', size: 42, price: 459000, quantity: 1 },
+    { pair: 'Minggu', colour: 'black', size: 42, price: 400000, quantity: 5 },
+    { pair: 'Minggu', colour: 'black', size: 42, price: 459000, quantity: 7 },
+    { pair: 'Tinta', colour: 'black', size: 40, price: 649000, quantity: 1 },
+  ];
+  assert.deepEqual(reconcileLines(saved, catalog), [
+    { pair: 'Tinta', colour: null, size: 42, price: 649000, quantity: 2 },
+    { pair: 'Minggu', colour: 'black', size: 42, price: 459000, quantity: MAX_QUANTITY },
+    { pair: 'Tinta', colour: null, size: 40, price: 649000, quantity: 1 },
+  ]);
+});
+
+test('a corrected bag is saved back, so the bad lines do not return', () => {
+  const storage = fakeStorage(JSON.stringify([{ ...tinta, price: 1000, quantity: 1 }, { pair: 'Gone', colour: null, size: 40, price: 1, quantity: 1 }]));
+  const bag = createBag({ storage, check: (lines) => reconcileLines(lines, catalog) });
+  assert.deepEqual(bag.lines(), [{ ...tinta, quantity: 1 }]);
+  assert.deepEqual(JSON.parse(storage.items.get('sapatoo.bag.v1')), [{ ...tinta, quantity: 1 }]);
+});
+
 test('the bag saves every change and tells whoever is watching', () => {
   const storage = fakeStorage();
-  const bag = createBag(storage);
+  const bag = createBag({ storage });
   const seen = [];
   bag.watch((lines) => seen.push(countPairs(lines)));
   bag.add(tinta);
